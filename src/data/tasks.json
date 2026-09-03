@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "courseId": 1,
+    "title": "Study TypeScript Classes",
+    "description": "Learn how classes work in TypeScript",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "courseId": 1,
+    "title": "Practice Async/Await",
+    "description": "Create examples using asynchronous functions",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "courseId": 1,
+    "title": "Create Express API",
+    "description": "Create the first REST API endpoints",
+    "completed": true
+  }
+]

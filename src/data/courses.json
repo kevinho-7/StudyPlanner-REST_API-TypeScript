@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "TypeScript",
+    "description": "Learn TypeScript fundamentals"
+  },
+  {
+    "id": 2,
+    "name": "C#",
+    "description": "Learn C# and Object-Oriented Programming"
+  }
+]

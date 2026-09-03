@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "courseId": 1,
+    "name": "TypeScript Fundamentals"
+  },
+  {
+    "id": 2,
+    "courseId": 1,
+    "name": "Object-Oriented Programming"
+  },
+  {
+    "id": 3,
+    "courseId": 1,
+    "name": "Advanced TypeScript"
+  },
+  {
+    "id": 4,
+    "courseId": 2,
+    "name": "Object-Oriented Programming"
+  },
+  {
+    "id": 5,
+    "courseId": 2,
+    "name": "LINQ"
+  }
+]
