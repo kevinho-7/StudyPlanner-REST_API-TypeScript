@@ -1,5 +1,6 @@
 import express, { type Express, type Request, type Response } from 'express';
 import courseRoutes from './routes/courseRoutes.js';
+import { errorHandler } from './middlewares/errorMiddleware.js';
 
 const app: Express = express();
 
@@ -9,7 +10,11 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Heyy whats up??\n Welcome to 'Study Planner API!'");
 });
 
+app.use(errorHandler);
+
+app.use(express.json());
+
 app.listen(5050, () => {
-    console.log("Server runing on port 5000")
+    console.log("Server runing on port 5050")
 });
 
