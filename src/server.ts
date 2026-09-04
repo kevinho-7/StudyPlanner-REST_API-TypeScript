@@ -4,6 +4,8 @@ import { errorHandler } from './middlewares/errorMiddleware.js';
 
 const app: Express = express();
 
+app.use(express.json());
+
 app.use(courseRoutes);
 
 app.get("/", (req: Request, res: Response) => {
@@ -11,8 +13,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use(errorHandler);
-
-app.use(express.json());
 
 app.listen(5050, () => {
     console.log("Server runing on port 5050")

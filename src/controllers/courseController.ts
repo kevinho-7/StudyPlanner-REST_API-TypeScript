@@ -2,6 +2,7 @@ import { type Request, type Response } from "express";
 import { CourseService } from "../services/courseService.js";
 import type { Course } from "../models/Course.js";
 import { courseSchema } from "../validations/courseValidation.js";
+import { BadRequestError } from "../errors/badRequestError.js";
 
 const _courseService = new CourseService();
 
@@ -22,16 +23,54 @@ export class CourseController{
 
     }
 
-    // async createCourse(req: Request, res: Response){
+    async createCourse(req: Request, res: Response){
+        
+        const dataBody = courseSchema.safeParse(req.body);
 
-    //     const data: Course = courseSchema.safeParse(req.body);
+        if(!dataBody.success){
+            throw new BadRequestError("Invalid body");  
+        }
 
-    //     const result = await _courseService.createCourse(data);
-    //     res.status(201).json({
-    //         message: "The course has been created",
-    //         result
-    //     })
+        const validData: Course = dataBody.data; 
 
-    // }
+        const result = await _courseService.createCourse(validData);
+        res.status(201).json({
+            message: "The course has been created",
+            result
+        });
+
+    }
+
+    async updateCourse(req: Request, res: Response){
+
+        const id: number = Number(req.params.id);
+
+        const dataBody = courseSchema.safeParse(req.body);
+
+        if(!dataBody.success){
+            throw new BadRequestError("Invalid body"); 
+        }
+
+        const validData: Course = dataBody.data;
+
+        const result = await _courseService.updateCourse(id, validData)
+        res.status(200).json({
+            message: "The course has been updated",
+            result
+        });
+
+    }
+
+    async deleteCourse(req: Request, res: Response){
+
+        const id: number = Number(req.params.id);
+
+        const result = _courseService.deleteCourse(id);
+        res.status(200).json({
+            message: "The course has been deleted",
+            result
+        });
+
+    }
 
 }

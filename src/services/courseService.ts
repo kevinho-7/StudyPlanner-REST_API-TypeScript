@@ -23,7 +23,7 @@ export class CourseService {
         return courseById;
     }
 
-    async createCourse(data: Course): Promisse<Course>{
+    async createCourse(data: Course): Promise<Course>{
 
         const course: Course = {
             id: coursesJson.length + 1,
@@ -33,7 +33,47 @@ export class CourseService {
 
         coursesJson.push(course)
 
+        const newCourseFile = JSON.stringify(coursesJson, null, 2);
+
+        await fs.writeFile(filePath, newCourseFile);
+
         return course;
+    }
+
+    async updateCourse(id: number, updates: Course): Promise<Course>{
+
+        const index = coursesJson.findIndex(c => c.id == id);
+
+        if(index === -1){
+            throw new NotFoundError("Course not found");
+        }
+
+        const updatedCourse = coursesJson[index] = {
+            id: id,
+            name: updates.name,
+            description: updates.description
+        }
+
+        const appliedUpdates = JSON.stringify(coursesJson, null, 2);
+
+        await fs.writeFile(filePath, appliedUpdates);
+
+        return updatedCourse;
+    }
+
+    async deleteCourse(id: number){
+
+        const index = coursesJson.findIndex(c => c.id == id);
+
+        if(index === -1){
+            throw new NotFoundError("Course not found");
+        }
+        
+        coursesJson.splice(index, 1);
+
+        const appliedDelete = JSON.stringify(coursesJson, null, 2);
+
+        await fs.writeFile(filePath, appliedDelete);
 
     }
 
